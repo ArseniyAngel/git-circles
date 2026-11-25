@@ -16,7 +16,7 @@ class Circles(QMainWindow):
         self.pushButton.clicked.connect(self.add_circle)
 
     def add_circle(self):
-        d = randint(30, 120)
+        d = randint(30, 120) # тут поменяла
         x = randint(0, self.width() - d)
         y = randint(0, self.height() - d)
         self.circles.append((x, y, d))
@@ -25,7 +25,7 @@ class Circles(QMainWindow):
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-        painter.setPen(QPen(QColor("red"), 4))
+        painter.setPen(QPen(QColor("red"), 4))# тут поменяла
         for x, y, d in self.circles:
             painter.drawEllipse(x, y, d, d)
 
