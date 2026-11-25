@@ -2,16 +2,15 @@ import sys
 from pathlib import Path
 from random import randint
 
-from PyQt6 import uic
 from PyQt6.QtGui import QColor, QPainter, QPen
 from PyQt6.QtWidgets import QApplication, QMainWindow
+from ui_form import Ui_MainWindow
 
-
-class Circles(QMainWindow):
+class Circles(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         # Загружаем интерфейс из файла, лежащего рядом с программой
-        uic.loadUi(Path(__file__).with_name("UI.ui"), self)
+        self.setupUi(self)
         self.circles = []  # список окружностей: (x, y, диаметр)
         self.pushButton.clicked.connect(self.add_circle)
 
@@ -25,7 +24,7 @@ class Circles(QMainWindow):
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-        painter.setPen(QPen(QColor("red"), 4))# тут поменяла
+        painter.setPen(QPen(QColor(randint(0, 255), randint(0, 255), randint(0, 255)), 4))# добавила случайный цвет окружностей
         for x, y, d in self.circles:
             painter.drawEllipse(x, y, d, d)
 
